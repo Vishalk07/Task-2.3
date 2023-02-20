@@ -3,14 +3,11 @@ const table1 = document.getElementById("maintable");
 var count = 5;
 var btn = document.getElementById("btn");
 // <---------------------------------- New Row Add Function---------------------------------------->
-
 btn.addEventListener("click", addrow);
-let trueFalse = 0;
-let tfArray = [];
+let trueFalse = 0,tfArray = [];
 function addrow() {
-  var row1 = document.createElement("tr");
+  var row1 = document.createElement("tr"), col = document.createElement("td");
   row1.className = "row1";
-  var col = document.createElement("td");
   col.className = "col1";
   count++;
   col.setAttribute("data-label", "No");
@@ -34,15 +31,13 @@ function addrow() {
   row1.appendChild(col4);
   const col5 = document.createElement("td");
   col5.innerHTML =
-    '<button class="remove-row bg-transparent border-0" id="index" ><i class="fa fa-minus remove-row1" aria-hidden="true"></i></button>';
+    '<button class="remove-row bg-transparent border-0" id="index" ><img class="remove-row1" src="./images/minus.png" alt=""></button>';
   row1.appendChild(col5);
   table.appendChild(row1);
 }
 // <--------------------------------- Remove Row Function------------------------------------------->
-
 table.addEventListener("click", function (e) {
-  event.preventDefault();
-
+  e.preventDefault();
   if (e.target.classList.contains("remove-row")) {
     const row = e.target.parentNode.parentNode;
     var in1 = e.target.parentNode.parentNode.rowIndex;
@@ -89,10 +84,9 @@ function indexing() {
   }
 }
 // <------------------------------- Generate Table Function--------------------------------------->
-
 function displaytable(event) {
   trueFalse = 0;
-  let flag=0;
+  let flag=0,c=1;
   tfArray = [];
   event.preventDefault();
   if (validation()) {
@@ -112,22 +106,14 @@ function displaytable(event) {
         } else {
           tfArray.push(0);
           trueFalse = 0;
-        }
-        console.log(trueFalse);
-        if (
-          tfArray[0] ||
-          tfArray[1] ||
-          tfArray[2] ||
-          tfArray[3] ||
-          tfArray[4]
-        ) {
+        }     
+        if (tfArray.includes(1)) {
           document.getElementById("divtab").style.display = "block";
           document.getElementById("divtab1").style.display = "block";
           document.getElementById("myInput").style.display = "block";
           document.getElementById("lastdiv").style.display = "block";
           document.getElementById("tab2").style.display = "table";
         } else {
-          
           document.getElementById("divtab").style.display = "none";
           document.getElementById("divtab1").style.display = "none";
           document.getElementById("myInput").style.display = "none";
@@ -135,7 +121,6 @@ function displaytable(event) {
           document.getElementById("tab2").style.display = "none";
         }
       }
-
       var row12 = document.createElement("tr");
       for (var j = 0; j < 4; j++) {
         if (k == 0) {
@@ -150,24 +135,20 @@ function displaytable(event) {
           tab2.appendChild(row12);
         } else if (trueFalse) {
           var col12 = document.createElement("td");
-          col12.innerHTML = objCells.item(j).innerHTML;
+          col12.innerHTML = c;
+          c++;
           row12.appendChild(col12);
           tab2.appendChild(row12);
-      
         }
       }
     }
     if(!flag){
     alert("At Least Accept One Result");}
-    var var2 =
-      document.getElementById("th1").firstElementChild.firstElementChild
-        .nextElementSibling;
-    var2.innerHTML = `Name<i class="fa fa-sort" aria-hidden="true"></i>`;
+    var var2 =document.getElementById("th1").firstElementChild.firstElementChild.nextElementSibling;
+    var2.innerHTML = `Name<img src="./images/sort.png" alt="">`;
     var2.setAttribute("onclick", "sortTable(1)");
-    var var3 =
-      document.getElementById("th1").firstElementChild.firstElementChild
-        .nextElementSibling.nextElementSibling;
-    var3.innerHTML = `Subject<i class="fa fa-sort" aria-hidden="true"></i>`;
+    var var3 =document.getElementById("th1").firstElementChild.firstElementChild.nextElementSibling.nextElementSibling;
+    var3.innerHTML = `Subject<img src="./images/sort.png" alt="">`;
     var3.setAttribute("onclick", "sortTable(2) ");
     getresult();
     red();
@@ -176,12 +157,12 @@ function displaytable(event) {
 function validation() {
   let flag = true;
   document.querySelectorAll(".name,.subject").forEach((ele) => {
-    var pattern = /[a-zA-Z]+$/;
+    var pattern = /^[a-zA-z\s]+$/;  //pattern for Name and Subject
     if (!pattern.test(ele.value)) {
       ele.nextElementSibling?.remove();
       let errText = document.createElement("p");
       errText.style.color = "red";
-      errText.innerHTML = "Please Fill ";
+      errText.innerHTML = "Please Fill Valid Format ";
       ele.parentNode.appendChild(errText);
       flag = false;
     } else {
@@ -189,12 +170,12 @@ function validation() {
     }
   });
   document.querySelectorAll(".mark").forEach((ele) => {
-    var pattern = /^[0-9]$|^[1-9][0-9]$|^(100)$/;
+    var pattern = /^[0-9]$|^[1-9][0-9]$|^(100)$/; //Pattern for marks
     if (!pattern.test(ele.value)) {
       ele.nextElementSibling?.remove();
       let errText = document.createElement("p");
       errText.style.color = "red";
-      errText.innerHTML = "Please Fill ";
+      errText.innerHTML = "Please Fill Valid Format";
       ele.parentNode.appendChild(errText);
       flag = false;
     } else {
@@ -230,33 +211,24 @@ function Searching() {
   }
 }
 // <---------------------------------------sorting----------------------------------------------->
-
 function sortTable(n) {
-  var table,
-    rows,
-    switching,
-    i,
-    x,
-    y,
-    shouldSwitch,
-    dir,
-    switchcount = 0;
+  var table,rows,changedir,i,x,y,shouldSwitch,direction,switchcount = 0;
   table = document.getElementById("tab2");
-  switching = true;
-  dir = "asc";
-  while (switching) {
-    switching = false;
+  changedir = true;
+  direction = "asc";
+  while (changedir) {
+    changedir = false;
     rows = table.rows;
     for (i = 1; i < rows.length - 1; i++) {
       shouldSwitch = false;
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
+      if (direction == "asc") {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
         }
-      } else if (dir == "desc") {
+      } else if (direction == "desc") {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
@@ -265,25 +237,25 @@ function sortTable(n) {
     }
     if (shouldSwitch) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
+      changedir = true;
       switchcount++;
     } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
+      if (switchcount == 0 && direction == "asc") {
+        direction = "desc";
+        changedir = true;
       }
     }
   }
 }
-// <------------------------------- Red Color to failed td--------------------------------------->
+function red() // <------------------------------- Red Color to failed td--------------------------------------->
+{
 
-function red() {
   let outTbody = document.getElementById("tbody1");
   for (let index = 0; index < outTbody.rows.length; index++) {
-    let rowV = outTbody.childNodes[index];
+    let failrow = outTbody.childNodes[index];
     let markV = parseInt(outTbody.childNodes[index].lastChild.innerHTML);
     if (markV < 33) {
-      rowV.style.backgroundColor = "#f103039e";
+      failrow.style.backgroundColor = "#f103039e";
     }
   }
 }
@@ -304,13 +276,8 @@ table.addEventListener("click", function (th) {
 });
 
 // <------------------------------- New Percentage Table--------------------------------------->
-
 function getresult() {
-  var percent = [];
-  var tabname = [];
-  var tabmark = [];
-  var Name = [];
-  var mark = [];
+  var percent=[],tabname=[],tabmark=[],Name=[],mark=[];
   for (k = 0; k < table.rows.length; k++) {
     if (tfArray[k]) {
       var objCells = table.rows.item(k).cells;
@@ -330,9 +297,7 @@ function getresult() {
       }
     }
   }
-
   // <------------------------------- Name Marks Mapping--------------------------------------->
-
   var result = {};
   count1();
   for (let i = 0; i < Name.length; i++) {
@@ -351,9 +316,7 @@ function getresult() {
     percent.push(
       (parseInt(tabmark[index]) / parseInt(occurence[index])).toFixed(2)
     );
-    // console.log(result);
   }
-  // console.log(percent);
   var tab3 = document.getElementById("tbody2");
   var c = 1;
   tab3.innerHTML = "";
@@ -382,10 +345,9 @@ function getresult() {
   }
   var outTbody1 = document.getElementById("tbody2");
   for (let index = 0; index < outTbody1.rows.length; index++) {
-    let rowV = outTbody1.childNodes[index];
-    let markV = parseInt(outTbody1.childNodes[index].lastChild.innerHTML);
+    let Failper = outTbody1.childNodes[index], markV = parseInt(outTbody1.childNodes[index].lastChild.innerHTML);
     if (markV < 33) {
-      rowV.style.backgroundColor = "#f103039e";
+      Failper.style.backgroundColor = "#f103039e";
     }
   }
   // <------------------------------- occurence count and print--------------------------------------->
