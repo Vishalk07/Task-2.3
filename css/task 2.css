@@ -12,20 +12,21 @@ input {
   margin: auto;
 }
 #main1 {
-    background-image: linear-gradient(to bottom, #a35a99, #7a51aa, #5567af, #3e78a5, #2e7d9e);
+  background-image: linear-gradient(to bottom, #70b2df, #be77bc, #a578ca, #75b3af, #acb868);
   margin-top: 15px;
   margin-inline: auto;
-  border-radius: 10px;
+  border-radius: 43px;
   width: auto;
   padding: 15px;
 }
 #tab2 {
   margin-bottom: 10px;
 }
+
 #div1,
 #newtab {
   background-color: rgba(255,255,255,0.4);;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 #myInput {
   margin: 20px;
@@ -40,6 +41,9 @@ tr:hover {
 thead tr:hover{
   background-color: #5567af;
 }
+#lastdiv{
+background-color: rgba(255,255,255,0.4);
+border-radius: 24px;}
 #divtab,#myInput,#divtab1,#lastdiv,#tab2{
   display: none;
 }
@@ -49,7 +53,10 @@ thead tr:hover{
     display: block;
     width: 100%;
   }
-
+  h1
+  {
+    font-size: x-large;
+  }
   #maintable thead {
    display: none;
 }
@@ -61,7 +68,7 @@ input{
     border: 1px solid #ccc;
     margin-bottom: 10px;
   }
-  #maintable  tr,td,tbody{
+  #maintable  tr,#maintable td,#maintable tbody{
     text-align: right;
   }
 
@@ -80,5 +87,9 @@ input{
  font-size: 14px;
  font-weight: 600;
  margin-left: 10px;
+  }
+  #save1{
+    display: flex;
+    justify-content: center;
   }
 }
