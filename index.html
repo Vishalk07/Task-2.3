@@ -10,7 +10,6 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link rel="stylesheet" href="./bootstrap/bootstrap5.2.1.css">
     <link rel="stylesheet" href="./css/task 2.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/x-icon" href="./images/icons8-done.gif">
 </head>
@@ -22,7 +21,7 @@
             <h1>Task-2 Javascript</h1>
         </header>
         <div class="container" id="div1">
-            <div class="container text-left"> <button class="bg-transparent border-0" id="btn"><img
+            <div class="container text-left" id="save1"> <button class="bg-transparent border-0" id="btn"><img
                         src="./images/icons8-plus-math-20.png" alt=""></button></div>
             <div class="container">
                 <form action="#" onsubmit="return displaytable(event)" id="form1">
@@ -103,14 +102,14 @@
                         </tbody>
                     </table>
             </div>
-            <div class="container"> <button type="submit" class="btn btn-primary my-3">Save</button></div>
+            <div class="container" id="save1"> <button type="submit"  class="btn btn-primary my-3">Save</button></div>
         </div>
         </form>
         <div class="topnav d-flex justify-content-center ">
-            <input type="text" id="myInput" onkeyup="Searching()" placeholder="Search By Name/Sub">
+            <input type="text" id="myInput"  class="form-control" onkeyup="Searching()" placeholder="Search By Name/Sub">
         </div>
         <div class="container text-center " id="divtab">
-            <h1> Table Result</h1>
+            <h1><img src="./images/9gag.png"> ----- Table Result ----- </h1>
         </div>
 
         <div class="container mb-4 table-responsive" id="newtab">
@@ -123,7 +122,7 @@
             </table>
         </div>
         <div class="container text-center " id="divtab1">
-            <h1>Percentage Table</h1>
+            <h1><img src="./images/9gag.png"> -----Percentage Table-----</h1>
         </div>
         <div class="container-fluid table-responsive" id="lastdiv">
             <table id="tab3" class="table table-hover my-4">
@@ -141,8 +140,6 @@
     <!-- Bootstrap JavaScript Libraries -->
     <script src="./js/task 2.js"></script>
     <script src="./bootstrap/bootstrap.js"></script>
-
-
 </body>
 
 </html>
